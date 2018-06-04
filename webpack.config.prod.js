@@ -6,38 +6,38 @@ var commonConfig = require('./webpack.config.common.js');
 var ngw = require('@ngtools/webpack');
 
 module.exports = webpackMerge.smart(commonConfig, {
-    entry: {
-        'app': './assets/app/main.aot.ts'
-    },
+  entry: {
+    app: './assets/app/main.aot.ts'
+  },
 
-    output: {
-        path: path.resolve(__dirname + '/public/js/app'),
-        filename: 'bundle.js',
-        publicPath: '/js/app/',
-        chunkFilename: '[id].[hash].chunk.js'
-    },
-    mode: 'production',
-    module: {
-        rules: [
-            {
-                test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-                loader: '@ngtools/webpack'
-            },
-            {
-                test: /\.ts$/,
-                use: [
-                    'awesome-typescript-loader',
-                    'angular2-template-loader',
-                    // 'angular-router-loader?aot=true'
-                ]
-            }
+  output: {
+    path: path.resolve(__dirname + '/public/js/app'),
+    filename: 'bundle.js',
+    publicPath: '/public/js/app/',
+    chunkFilename: '[id].[hash].chunk.js'
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        loader: '@ngtools/webpack'
+      },
+      {
+        test: /\.ts$/,
+        use: [
+          'awesome-typescript-loader',
+          'angular2-template-loader'
+          // 'angular-router-loader?aot=true'
         ]
-    },
+      }
+    ]
+  },
 
-    plugins: [
+  plugins: [
     new ngw.AngularCompilerPlugin({
       tsConfigPath: './tsconfig.aot.json',
       entryModule: './assets/app/app.module#AppModule'
     })
-    ]
+  ]
 });
