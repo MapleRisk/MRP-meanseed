@@ -12,7 +12,7 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 mongoose.connect(
-  'mongodb://maple-dev:mapledev01@ds147659.mlab.com:47659/angular2-deployment'
+  'maple-dev:mapledev01@ds147659.mlab.com:47659/angular2-deployment'
 );
 
 // view engine setup
